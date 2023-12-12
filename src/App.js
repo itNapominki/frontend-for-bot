@@ -35,7 +35,7 @@ function App() {
         phone,
       }
 tg.sendData(JSON.stringify(data))
-    }, [])
+    }, [name, phone])
 
 
     useEffect(()=> {
