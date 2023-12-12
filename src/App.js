@@ -14,7 +14,7 @@ function App() {
 
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
-
+    const [test, setTest] = useState(0);
 
     useEffect(() => {
       tg.ready();
@@ -26,6 +26,8 @@ function App() {
         name,
         phone,
       };
+
+      setTest(test++)
       tg.sendData(JSON.stringify(data));
 
       })
@@ -87,6 +89,7 @@ function App() {
           value={phone}
           onChange={onChangePhone}
         ></input>
+        {test}
       </>
     );
   }
