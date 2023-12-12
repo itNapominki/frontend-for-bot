@@ -10,47 +10,30 @@ function App() {
   };
 
   function Form() {
-    
-
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
-    const [test, setTest] = useState(0);
 
     useEffect(() => {
       tg.ready();
-      //tg.MainButton.show();
+      tg.MainButton.show();
       tg.MainButton.setParams({ text: "Отправить данные" });
-      tg.onEvent('mainButtonClicked', () => {
+    }, []);
 
-          const data = {
+    //данные в телеграмм
+    const onSendData = useCallback(() => {
+      const data = {
         name,
         phone,
       };
-
-      setTest(test++)
       tg.sendData(JSON.stringify(data));
+    }, [name, phone]);
 
-      })
-    }, []);
-
-    // данные в телеграмм
-    // const onSendData = useCallback(() => {
-    //   const data = {
-    //     name,
-    //     phone,
-    //   };
-    //   tg.sendData(JSON.stringify(data));
-    // }, [name, phone]);
-
-    // useEffect(() => {
-    //   tg.onEvent("mainButtonClicked", onSendData);
-    //   return () => {
-    //     tg.offEvent("mainButtonClicked", onSendData);
-    //   };
-    // }, [onSendData]);
-
-
-
+    useEffect(() => {
+      tg.onEvent("mainButtonClicked", onSendData);
+      return () => {
+        tg.offEvent("mainButtonClicked", onSendData);
+      };
+    }, [onSendData]);
 
     useEffect(() => {
       if (!name || !phone) {
@@ -89,7 +72,6 @@ function App() {
           value={phone}
           onChange={onChangePhone}
         ></input>
-        {test}
       </>
     );
   }
@@ -97,15 +79,12 @@ function App() {
   return (
     <div className="App">
       <div className="wrapper_input">
-        <h2>Заполните форму регистрации1</h2>
+        <h2>Заполните форму регистрации</h2>
         <Form />
         <div className="button_container">
           <button className="button" onClick={onClose}>
             Отменить
           </button>
-          {/* <button className="button" onClick={onClose}>
-              Отправить
-            </button> */}
         </div>
       </div>
     </div>
