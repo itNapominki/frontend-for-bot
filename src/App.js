@@ -15,7 +15,7 @@ function App() {
 
     useEffect(() => {
       tg.ready();
-      tg.MainButton.show();
+      //tg.MainButton.show();
       tg.MainButton.setParams({ text: "Отправить данные" });
     }, []);
 
@@ -45,6 +45,15 @@ tg.sendData(JSON.stringify(data))
       }
 
     }, [onSendData])
+
+
+    useEffect(() => {
+      if(!name || !phone) {
+          tg.MainButton.hide();
+      } else {
+          tg.MainButton.show();
+      }
+  }, [name, phone])
 
     const onChangeName = (e) => {
       setName(e.target.value);
