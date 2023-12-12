@@ -44,7 +44,7 @@ tg.sendData(JSON.stringify(data))
         tg.offEvent("mainButtonClicked", onSendData)
       }
 
-    }, [])
+    }, [onSendData])
 
     const onChangeName = (e) => {
       setName(e.target.value);
