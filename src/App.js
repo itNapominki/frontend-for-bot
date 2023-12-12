@@ -5,69 +5,69 @@ import {} from "react-router-dom";
 const tg = window.Telegram.WebApp;
 
 function App() {
- 
-
   const onClose = () => {
     tg.close();
   };
 
   function Form() {
-
-    useEffect(() => {
-      tg.ready();
-      //tg.MainButton.show();
-      tg.MainButton.setParams({ text: "Отправить данные" });
-    }, []);
-
-
-
-
-
+    
 
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
 
 
-    // данные в телеграмм
-    const onSendData = useCallback(() => {
-      const data = {
+    useEffect(() => {
+      tg.ready();
+      //tg.MainButton.show();
+      tg.MainButton.setParams({ text: "Отправить данные" });
+      tg.onEvent('mainButtonClicked', () => {
+
+          const data = {
         name,
         phone,
-      }
-tg.sendData(JSON.stringify(data))
-    }, [name, phone])
+      };
+      tg.sendData(JSON.stringify(data));
+
+      })
+    }, []);
+
+    // данные в телеграмм
+    // const onSendData = useCallback(() => {
+    //   const data = {
+    //     name,
+    //     phone,
+    //   };
+    //   tg.sendData(JSON.stringify(data));
+    // }, [name, phone]);
+
+    // useEffect(() => {
+    //   tg.onEvent("mainButtonClicked", onSendData);
+    //   return () => {
+    //     tg.offEvent("mainButtonClicked", onSendData);
+    //   };
+    // }, [onSendData]);
 
 
-    useEffect(()=> { 
-      tg.onEvent("mainButtonClicked", onSendData)
-      return () => {
-        tg.offEvent("mainButtonClicked", onSendData)
-      }
-
-    }, [onSendData])
 
 
     useEffect(() => {
-      if(!name || !phone) {
-          tg.MainButton.hide();
+      if (!name || !phone) {
+        tg.MainButton.hide();
       } else {
-          tg.MainButton.show();
+        tg.MainButton.show();
       }
-  }, [name, phone])
+    }, [name, phone]);
 
     const onChangeName = (e) => {
       setName(e.target.value);
-    }
-    
+    };
+
     const onChangePhone = (e) => {
       setPhone(e.target.value);
-    }
+    };
 
-
-console.log(name);
-console.log(phone);
-
-
+    console.log(name);
+    console.log(phone);
 
     return (
       <>
@@ -78,7 +78,7 @@ console.log(phone);
           required
           value={name}
           onChange={onChangeName}
-        ></input>        
+        ></input>
         <input
           className="input"
           type="text"
@@ -94,7 +94,7 @@ console.log(phone);
   return (
     <div className="App">
       <div className="wrapper_input">
-        <h2>Заполните форму регистрации</h2>
+        <h2>Заполните форму регистрации1</h2>
         <Form />
         <div className="button_container">
           <button className="button" onClick={onClose}>
