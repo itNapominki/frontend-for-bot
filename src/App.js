@@ -1,11 +1,11 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import { useEffect } from "react";
 import {
-  createBrowserRouter,
-  RouterProvider,
-  Routes,
-  Route,
+  // createBrowserRouter,
+  // RouterProvider,
+  // Routes,
+  // Route,
 } from "react-router-dom";
 
 const tg = window.Telegram.WebApp;
@@ -59,10 +59,10 @@ function App() {
         </Routes> */}
 
         <>
-          <h2>Запоните форму заявку</h2>
-          <input className="input" placeholder="Ваше имя"></input>
-          <input className="input" placeholder="Ваша Фомилия"></input>
-          <input className="input" placeholder="Ваш телефон"></input>
+          <h2>Заполните форму регистрации</h2>
+          <input className="input" placeholder="Ваше имя" required></input>
+          <input className="input" placeholder="Ваша Фамилия" required></input>
+          <input className="input" placeholder="Ваш телефон" required></input>
 
           <div className="button_container">
             <button className="button" onClick={onClose}>
