@@ -24,8 +24,8 @@ function App() {
 
 
 
-    const [name, setName] = useState();
-    const [phone, setPhone] = useState();
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
 
 
     // данные в телеграмм
@@ -38,7 +38,7 @@ tg.sendData(JSON.stringify(data))
     }, [name, phone])
 
 
-    useEffect(()=> {
+    useEffect(()=> { 
       tg.onEvent("mainButtonClicked", onSendData)
       return () => {
         tg.offEvent("mainButtonClicked", onSendData)
@@ -55,7 +55,8 @@ tg.sendData(JSON.stringify(data))
     }
 
 
-
+console.log(name);
+console.log(phone);
 
 
 
