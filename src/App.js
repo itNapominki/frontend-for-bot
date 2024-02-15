@@ -12,6 +12,7 @@ function App() {
   function Form() {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
+    const [nameTlg, setNmaeTlg] = useState("");
 
     useEffect(() => {
       tg.ready();
@@ -24,9 +25,10 @@ function App() {
       const data = {
         name,
         phone,
+        nameTlg,
       };
       tg.sendData(JSON.stringify(data));
-    }, [name, phone]);
+    }, [name, phone, nameTlg]);
 
     useEffect(() => {
       tg.onEvent("mainButtonClicked", onSendData);
@@ -36,12 +38,12 @@ function App() {
     }, [onSendData]);
 
     useEffect(() => {
-      if (!name || !phone) {
+      if (!name || !phone || !nameTlg) {
         tg.MainButton.hide();
       } else {
         tg.MainButton.show();
       }
-    }, [name, phone]);
+    }, [name, phone, nameTlg]);
 
     const onChangeName = (e) => {
       setName(e.target.value);
@@ -49,6 +51,10 @@ function App() {
 
     const onChangePhone = (e) => {
       setPhone(e.target.value);
+    };
+
+    const onChangeNmaeTlg = (e) => {
+      setNmaeTlg(e.target.value);
     };
 
     console.log(name);
@@ -71,6 +77,14 @@ function App() {
           required
           value={phone}
           onChange={onChangePhone}
+        ></input>
+         <input
+          className="input"
+          type="text"
+          placeholder="Ваш имя телеграмм @name"
+          required
+          value={nameTlg}
+          onChange={onChangeNmaeTlg}
         ></input>
       </>
     );
