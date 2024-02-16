@@ -72,7 +72,7 @@ function App() {
         ></input>
         <input
           className="input"
-          type="text"
+          type="number"
           placeholder="Ваш телефон"
           required
           value={phone}
