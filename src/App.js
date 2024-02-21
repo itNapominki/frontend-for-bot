@@ -1,6 +1,6 @@
 import "./App.css";
 import { useCallback, useEffect, useState } from "react";
-import {} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 const tg = window.Telegram.WebApp;
 
@@ -61,23 +61,61 @@ function App() {
     console.log(phone);
 
     return (
-      <>
+      <form className="form">
+
+<fieldset class="radio-set">
+    <legend class="visually-hidden">Организация:</legend>
+    
+    <div class="radio-container">
+      <label class="radio-label">
+        <input
+          class="radio"
+          type="radio"
+          name="browser"
+          value="ie"
+          id="ie"
+          checked
+  required
+        />
+        <span class="radio-title">Агент</span>
+      </label>
+      <label class="radio-label">
+        <input
+          class="radio"
+          type="radio"
+          name="browser"
+          value="opera"
+          id="opera"
+          
+  required
+        />
+        <span class="radio-title">Работник СПЗ</span>
+      </label>
+      
+    </div>
+  </fieldset>
+
         <input
           className="input"
           type="text"
           placeholder="Ваше имя"
           required
+          minlength="4"
+          maxlength="20"
           value={name}
           onChange={onChangeName}
         ></input>
         <input
           className="input"
-          type="number"
-          placeholder="Ваш телефон"
+          type="tel"
+          pattern="[0-9]{11}"
+          placeholder="89013337722"
           required
           value={phone}
           onChange={onChangePhone}
         ></input>
+
+
          <input
           className="input"
           type="text"
@@ -85,12 +123,18 @@ function App() {
           required
           value={nameTlg}
           onChange={onChangeNmaeTlg}
-        ></input>
-      </>
+        ></input> 
+        <button type="submit">Сабмит</button>       
+      </form>
     );
   }
 
+
+
+
   return (
+    <Routes>
+   <Route path="/frontend-for-bot" element={
     <div className="App">
       <div className="wrapper_input">
         <h2>Заполните форму регистрации</h2>
@@ -102,6 +146,19 @@ function App() {
         </div>
       </div>
     </div>
+
+
+   } />
+      <Route path="frontend-for-bot/books" element={
+
+    <div className="App">
+      Вторая форма
+    </div>
+  
+  } />
+
+
+    </Routes>
   );
 }
 
