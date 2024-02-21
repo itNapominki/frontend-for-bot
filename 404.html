@@ -8,7 +8,11 @@
     <script>
       const path = window.location.pathname;
       console.log(path);
-      window.location.replace(`itnapominki.github.io/${path}/index.html`);
+     // window.location.replace(`itnapominki.github.io/${path}/index.html`);
+      if (!sessionStorage.getItem('redirected')) {
+        sessionStorage.setItem('redirected', 'true');
+        window.location.replace(`https://itnapominki.github.io${path}/index.html`);
+      }
     </script>
   </body>
 </html>
