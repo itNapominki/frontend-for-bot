@@ -12,37 +12,6 @@ body {
 
 .App {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* max-width: 300px; */
-}
-
-.wrapper_input {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 10px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.button_container {
-  display: flex;
-  justify-content: space-between;
-  align-self: normal;
-}
-
-.input {
-  height: 30px;
-  width: 100%;
-}
-
-.button {
-  /* height: 30px; */
-  padding: 10px;
-  margin: 0px 10px 0px 10px;
+  justify-content: center;
+ 
 }
