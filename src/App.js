@@ -149,7 +149,7 @@ function App() {
 
 
    } />
-      <Route path="frontend-for-bot/books" element={
+      <Route path="/frontend-for-bot/books" element={
 
     <div className="App">
       Вторая форма
