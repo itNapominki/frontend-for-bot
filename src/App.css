@@ -5,10 +5,10 @@
 
 }
 
-body {
+/* body {
   background: var(--tg-color-scheme);
   color: var(--tg-color-scheme);
-}
+} */
 
 .App {
   display: flex;

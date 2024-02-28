@@ -2,7 +2,8 @@ import styles from "./Button.module.css";
 
 function Button({title, onClick}) {
 
-    function handleClick() {
+    function handleClick(e) {
+        e.preventDefault();
         onClick()
     }
 

@@ -3,13 +3,13 @@ import InputName from "./components/InputName";
 import InputOrganization from "./components/InputOrganization";
 import InputPhone from "./components/InputPhone";
 import InputTlgName from "./components/InputTlgName";
-
-const FormContext = createContext(undefined);
+import { FormContext } from "../../context/FormContext";
+//import { FormContext } from "../../context";
 
 function FormGroup(props) {
   return (
-    <FormContext.Provider value={props}>
-      {props.children}      
+    <FormContext.Provider value={props}>      
+      {props.children}         
     </FormContext.Provider>
   );
 }
