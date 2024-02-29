@@ -1,0 +1,14 @@
+.wrapper {
+    height: 40px;
+    border: 1px solid green;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+    color: green;
+    font-weight: 700;    
+}
+
+.error {
+    border: 1px solid red;
+    color: red;
+}

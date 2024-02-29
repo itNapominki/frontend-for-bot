@@ -1,11 +1,9 @@
 import { useContext } from "react";
 import SpanError from "../../SpanError/SpanError.jsx";
 import { FormContext } from "../../../context/FormContext.js";
-import Input from "../../Input/Input";
+import InputTextArea from "../../Input/InputTextArea.jsx";
 
-// @ts-check
-
-function InputName({name}) {
+function InpuMessafeFromAgent({ name }) {
   const { handleChange, errors, values } = useContext(FormContext);
 
   const handleChangeInput = (event) => {
@@ -14,18 +12,15 @@ function InputName({name}) {
 
   return (
     <>
-      <Input
+      <InputTextArea
         handleChange={handleChangeInput}
-        placeholder="Ваше имя"       
+        placeholder="Укажите номер по какому заказу хотете написать агенту"
         required
-        minLength="4"
-        maxLength="20"
         name={name}
-        values={values[name]}
-      ></Input>
+      />
       <SpanError message={errors[name]}></SpanError>
     </>
   );
 }
 
-export default InputName;
+export default InpuMessafeFromAgent;

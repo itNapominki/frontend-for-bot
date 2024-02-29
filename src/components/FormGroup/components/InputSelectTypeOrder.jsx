@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { FormContext } from "../../../context/FormContext.js";
 import InputSelect from "../../Input/InputSelect.jsx";
 
-function InputOrganization({ name }) {
-  console.log("render InputOrganization");
+function InputSelectTypeOrder({ name }) {
   const { handleChange } = useContext(FormContext);
 
   const handleChangeInput = (event) => {
@@ -12,29 +11,29 @@ function InputOrganization({ name }) {
 
   const data = [
     {
-      title: "Агент",
+      title: "Поминки",
       key: 1,
-      value: "agent",
+      value: "wake",
     },
     {
-      title: "Работник СПЗ",
+      title: "Банкет",
       key: 2,
-      value: "employee",
+      value: "feast",
     },
   ];
 
   return (
     <>
-      <label>Выберите организацию</label>
+      <label>Тип заказа</label>
       <InputSelect
         handleChange={handleChangeInput}
-        name={name}
         defaultValue={data[0].value}
-        title="Выберите город"
+        title="Тип заказа"
+        name={name}
         data={data}
       />
     </>
   );
 }
 
-export default InputOrganization;
+export default InputSelectTypeOrder;

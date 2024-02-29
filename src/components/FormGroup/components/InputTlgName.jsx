@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { FormContext } from "../../../context/FormContext";
-import Input from "../../Input/Input";
+import Input from "../../Input/Input.jsx";
 import SpanError from "../../SpanError/SpanError";
 
-function InputTlgName() {
+function InputTlgName({name}) {
     const { handleChange, errors } = useContext(FormContext);
 
   const handleChangeInput = (event) => {
@@ -18,10 +18,10 @@ function InputTlgName() {
         pattern="^@.*"
         minLength="4"
         maxLength="20"
-        name="tlgName"
+        name={name}
         required
       ></Input>
-      <SpanError message={errors["tlgName"]}></SpanError>
+      <SpanError message={errors[name]}></SpanError>
     </>
   );
 }

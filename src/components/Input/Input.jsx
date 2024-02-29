@@ -1,6 +1,9 @@
+import React from 'react';
 import styles from "./Input.module.css";
 
-function Input({ placeholder, handleChange, ...props }) {
+
+function Input({ placeholder, handleChange, ...props } )  {
+ 
   return (
     <input
       onChange={handleChange}

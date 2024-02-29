@@ -1,11 +1,9 @@
 import { useContext } from "react";
-import SpanError from "../../SpanError/SpanError.jsx";
 import { FormContext } from "../../../context/FormContext.js";
-import Input from "../../Input/Input";
+import Input from "../../Input/Input.jsx";
+import SpanError from "../../SpanError/SpanError.jsx";
 
-// @ts-check
-
-function InputName({name}) {
+function InputNameContact({name}) {
   const { handleChange, errors, values } = useContext(FormContext);
 
   const handleChangeInput = (event) => {
@@ -16,7 +14,7 @@ function InputName({name}) {
     <>
       <Input
         handleChange={handleChangeInput}
-        placeholder="Ваше имя"       
+        placeholder="Контактное лицо"        
         required
         minLength="4"
         maxLength="20"
@@ -28,4 +26,4 @@ function InputName({name}) {
   );
 }
 
-export default InputName;
+export default InputNameContact;

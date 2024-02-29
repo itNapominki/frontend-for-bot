@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import Input from "../../Input/Input";
+import Input from "../../Input/Input.jsx";
 import SpanError from "../../SpanError/SpanError";
 import { FormContext } from "../../../context/FormContext";
 
-function InputPhone() {
+function InputPhone({name}) {
     const { handleChange, errors } = useContext(FormContext);
 
   const handleChangeInput = (event) => {
@@ -15,12 +15,12 @@ function InputPhone() {
       <Input
         placeholder="Телефон 89013337722"
         handleChange={handleChangeInput}
-        name="number"
+        name={name}
         type="tel"
         pattern="[0-9]{11}"
         required
       ></Input>
-      <SpanError message={errors["number"]}></SpanError>
+      <SpanError message={errors[name]}></SpanError>
     </>
   );
 }

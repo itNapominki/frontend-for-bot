@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { FormContext } from "../../../context/FormContext.js";
 import InputSelect from "../../Input/InputSelect.jsx";
 
-function InputOrganization({ name }) {
-  console.log("render InputOrganization");
+function InputSelectCity({ name }) {
   const { handleChange } = useContext(FormContext);
 
   const handleChangeInput = (event) => {
@@ -12,20 +11,35 @@ function InputOrganization({ name }) {
 
   const data = [
     {
-      title: "Агент",
+      title: "Москва",
       key: 1,
-      value: "agent",
+      value: "Москва",
     },
     {
-      title: "Работник СПЗ",
+      title: "МО",
       key: 2,
-      value: "employee",
+      value: "МО",
+    },
+    {
+      title: "СПб",
+      key: 3,
+      value: "СПб",
+    },
+    {
+      title: "ЛО",
+      key: 4,
+      value: "ЛО",
+    },
+    {
+      title: "НН",
+      key: 5,
+      value: "НН",
     },
   ];
 
   return (
     <>
-      <label>Выберите организацию</label>
+      <label>Город</label>
       <InputSelect
         handleChange={handleChangeInput}
         name={name}
@@ -37,4 +51,4 @@ function InputOrganization({ name }) {
   );
 }
 
-export default InputOrganization;
+export default InputSelectCity;

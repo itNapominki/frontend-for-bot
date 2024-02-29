@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
-const useFormWithValidation = () => {
-  const [values, setValues] = useState({organization:"agent"});
+const useFormWithValidation = ({initial}) => {
+  const [values, setValues] = useState(initial); //{organization:"agent"}
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
   
@@ -9,12 +9,12 @@ const useFormWithValidation = () => {
   const handleChange = (event) => {
     const target = event.target;
     const name = target.name;
-    const value = target.value;
-
-    
+    const value = target.value;    
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: target.validationMessage });
     setIsValid(target.closest("form").checkValidity());
+
+    console.log(target.closest("form"))
   };
 
   const resetForm = useCallback(
@@ -31,7 +31,7 @@ const useFormWithValidation = () => {
     handleChange,
     errors,
     isValid,
-    resetForm,    
+    resetForm,        
   };
 };
 

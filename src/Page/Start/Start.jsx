@@ -1,84 +1,62 @@
-import Button from "../../components/Button/Bitton";
 import FormGroup from "../../components/FormGroup/FormGroup";
 import MenuGroup from "../../components/MenuGroup/MenuGroup";
-import { useFormWithValidation } from "../../utils";
 import styles from "./Start.module.css";
-import { useCallback, useEffect } from "react";
 import useChooseForm from "./utils/hooks/useChooseForm";
-
-const tg = window.Telegram.WebApp;
+import Title from "../../components/Tile/Title";
 
 function Start() {
-  const { values, handleChange, errors, isValid, isVisibleSpanError } =
-    useFormWithValidation();
-
   const { handleForm, visibleForm } = useChooseForm({
     formHandleButton: true,
-  }); 
-
-  const onClose = () => {
-    tg.close();
-  };
-
-  useEffect(() => {
-    tg.ready();
-    tg.MainButton.show();
-    tg.MainButton.setParams({ text: "Отправить данные" });
-  }, []);
-
-  //данные в телеграмм
-  const onSendData = useCallback(() => {
-    tg.sendData(JSON.stringify(values));
-  }, [values]);
-
-  useEffect(() => {
-    tg.onEvent("mainButtonClicked", onSendData);
-    return () => {
-      tg.offEvent("mainButtonClicked", onSendData);
-    };
-  }, [onSendData]);
-
-  useEffect(() => {
-    if (!isValid) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
-    }
-  }, [isValid]);
+  });
 
   return (
     <>
       <form className={styles.wrapper}>
-        <Button title="Отменить" onClick={onClose}></Button>
-        <div className="wrapper_input">
-          <h2>Заполните форму регистрации</h2>          
-        </div>
         {visibleForm.formHandleButton && (
-          <MenuGroup handleForm={handleForm}></MenuGroup>
+          <>
+            <Title title="Выберите соответствующую форму" />
+            <MenuGroup handleForm={handleForm}></MenuGroup>
+          </>
         )}
+
         {visibleForm.formRegistration ? (
           <>
-            <FormGroup
-              values={values}
-              handleChange={handleChange}
-              errors={errors}
-              isValid={isValid}
-              isVisibleSpanError={isVisibleSpanError}
-            >
-              <FormGroup.InputName />
-              <FormGroup.InputOrganization />
-              <FormGroup.InputPhone />
-              {/* <FormGroup.InputTlgName /> */}
+            <Title title="Заполните форму регистрации" />
+            <FormGroup initial={{ role: "agent", form: "update" }}>
+              <FormGroup.InputName name="name" />
+              <FormGroup.InputOrganization name="role" />
+              <FormGroup.InputPhone name="number" />
             </FormGroup>
-            <span>
-              {!isValid ? "Форма еще не заполнена" : "Форма заполнена"}
-            </span>
           </>
         ) : null}
 
-        {visibleForm.formOrder && <>В разработке formOrder</>}
+        {visibleForm.formOrder ? (
+          <>
+            <Title title="Заполните форму заказа" />
+            <FormGroup
+              initial={{ form: "order", typeOrder: "wake", city: "Москва" }}
+            >
+              <FormGroup.InputSelectTypeOrder name="typeOrder" />
+              <FormGroup.InputNameContact name="nameContact" />
+              <FormGroup.InputPhone name="number" />
+              <FormGroup.InputFIO name="fio" />
+              <FormGroup.InputDateLeft name="dateLeft" />
+              <FormGroup.InputDateWake name="dateWake" />
+              <FormGroup.InputSelectTimeWake name="timeWake" />
+              <FormGroup.InputSelectCity name="city" />
+              <FormGroup.InputComment name="comment" />
+            </FormGroup>
+          </>
+        ) : null}
+
         {visibleForm.formMessageForAgent && (
-          <>В разработке formMessageForAgent</>
+          <>
+            <Title title="Сообщение Агенту" />
+            <FormGroup initial={{}}>
+              <FormGroup.InputIdAgent name="idAgent" />
+              <FormGroup.InpuMessafeFromAgent name="messageFromAgent" />
+            </FormGroup>
+          </>
         )}
       </form>
     </>
